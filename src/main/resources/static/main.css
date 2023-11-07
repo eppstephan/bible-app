@@ -1,0 +1,243 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font: 16px Arial;
+}
+
+a {
+	text-decoration: none;
+	color: dodgerblue;
+}
+
+a:hover {
+	color: #000;
+}
+
+h2 {
+	color: #fff;
+	margin-top: 20px;
+}
+
+h5 {
+	color: #fff;
+	margin-top: -15px;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+div.header {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	z-index: 1;
+}
+
+div.headline {
+	margin-top: -20px;
+	padding-top: 10px;
+	padding-left: 10px;
+	background: #042647;
+}
+
+div.content {
+	padding: 0px 10px;
+	text-align: justify;
+}
+
+div.form {
+	padding: 10px;
+	background: #355779;
+	margin-top: -10px
+}
+
+div.autocomplete {
+	position: relative;
+	display: inline-block;
+	width: 200px;
+}
+
+div.submit {
+	padding-top: 10px;
+	padding-left: 309px;
+}
+
+div.search {
+	display: inline-block;
+}
+
+@media screen and (max-width: 600px) {
+	div.autocomplete {
+		width: 155px;
+		display: inline-block;
+	}
+
+	div.submit {
+		padding-top: 10px;
+		padding-left: 263px;
+	}
+}
+
+div.select {
+	display: inline-block;
+}
+
+div.navigation {
+	display: inline-block;
+}
+
+span.navigation {
+	background-color: dodgerblue;
+	color: #fff;
+	padding: 11.5px;
+	cursor: pointer;
+}
+
+span.navigation.disable {
+	background-color: darkgray;
+	cursor: default;
+}
+
+div.passageTo {
+	padding-top: 10px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+div.read {
+	z-index: 0;
+	margin-top: 165px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: justify;
+}
+
+span.verse {
+	color: #355779;
+	font-weight: bold;
+	text-align: right;
+}
+
+span.verseText {
+	color: #333;
+}
+
+div.countResult {
+	z-index: 0;
+	margin-top: 265px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: justify;
+}
+
+div.sizedCountResult {
+	z-index: 0;
+	margin-top: 265px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: justify;
+	height: 305px;
+	overflow: hidden;
+}
+
+div.countResultButton {
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	padding: 10px;
+	background: #355779;
+	display: inline-block;
+	color: #fff;
+	cursor: pointer;
+	width: 100px;
+	text-align: center;
+}
+
+td.count {
+	text-align: center;
+}
+
+div.searchResult {
+	z-index: 0;
+	margin-top: 165px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: justify;
+}
+
+input {
+	border: 1px solid transparent;
+	background-color: #f1f1f1;
+	padding: 10px;
+	font-size: 16px;
+}
+
+input[type=text] {
+	background-color: #f1f1f1;
+	background-color: #eee;
+	width: 100%;
+}
+
+input[type=submit] {
+	background-color: DodgerBlue;
+	color: #fff;
+	cursor: pointer;
+	width: 100px;
+}
+
+input[type=submit]:disabled {
+	background-color: darkgray;
+	color: #fff;
+	cursor: pointer;
+}
+
+*:focus {
+	outline: none;
+}
+
+select {
+	border: 1px solid transparent;
+	background-color: #f1f1f1;
+	padding: 10px;
+	font-size: 16px;
+	width: 100px;
+}
+
+.autocomplete-items {
+	position: absolute;
+	border: 1px solid #d4d4d4;
+	border-bottom: none;
+	border-top: none;
+	z-index: 99;
+	/*position the autocomplete items to be the same width as the container:*/
+	top: 100%;
+	left: 0;
+	right: 0;
+}
+
+.autocomplete-items div {
+	padding: 10px;
+	cursor: pointer;
+	background-color: #fff;
+	border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+	background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+	background-color: DodgerBlue !important;
+	color: #ffffff;
+}
