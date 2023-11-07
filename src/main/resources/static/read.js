@@ -17,12 +17,12 @@ function initNavigation() {
 	var spanNext = document.getElementById('spanNext');
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	if (inputBook.value != '' && selectChapter.value < chapters[books.indexOf(inputBook.value)]) {
+	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
 		spanNext.className = "navigation"
 	} else {
 		spanNext.className += " disable";
 	}
-	if (inputBook.value != '' && selectChapter.value > 1) {
+	if (inputBook.value != '' && parseInt(selectChapter.value) > 1) {
 		spanPrev.className = "navigation"
 	} else {
 		spanPrev.className += " disable";
@@ -32,7 +32,7 @@ function initNavigation() {
 function goToPrevChapter() {
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	if (inputBook.value != '' && selectChapter.value > 1){
+	if (inputBook.value != '' && parseInt(selectChapter.value) > 1){
 		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
 		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();
@@ -42,7 +42,7 @@ function goToPrevChapter() {
 function goToNextChapter() {
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	if (inputBook.value != '' && selectChapter.value < chapters[books.indexOf(inputBook.value)]) {
+	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
 		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
 		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();		
