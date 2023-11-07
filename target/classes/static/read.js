@@ -30,17 +30,23 @@ function initNavigation() {
 }
 
 function goToPrevChapter() {
+	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
-	localStorage.setItem("selectedChapterKey", selectChapter.value);
-	document.getElementById('form').submit();
+	if (inputBook.value != '' && selectChapter.value > 1){
+		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
+		localStorage.setItem("selectedChapterKey", selectChapter.value);
+		document.getElementById('form').submit();
+	}
 }
 
 function goToNextChapter() {
+	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
-	localStorage.setItem("selectedChapterKey", selectChapter.value);
-	document.getElementById('form').submit();
+	if (inputBook.value != '' && selectChapter.value < chapters[books.indexOf(inputBook.value)]) {
+		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
+		localStorage.setItem("selectedChapterKey", selectChapter.value);
+		document.getElementById('form').submit();		
+	}
 }
 
 function populateChapters(bookValue) {
