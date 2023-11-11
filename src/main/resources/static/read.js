@@ -33,8 +33,8 @@ function goToPrevChapter() {
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) > 1){
-		// selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
-		localStorage.setItem("selectedChapterKey", (parseInt(selectChapter.value) - 1).toString());
+		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
+		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();
 	}
 }
@@ -43,8 +43,8 @@ function goToNextChapter() {
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
-		// selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
-		localStorage.setItem("selectedChapterKey", (parseInt(selectChapter.value) + 1).toString());
+		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
+		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();		
 	}
 }

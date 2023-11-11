@@ -16,14 +16,14 @@ import java.util.StringTokenizer;
 
 import org.springframework.stereotype.Service;
 
-import com.bible.app.model.Book;
-import com.bible.app.model.Chapter;
 import com.bible.app.model.Finding;
 import com.bible.app.model.Passage;
 import com.bible.app.model.Search;
 import com.bible.app.model.Section;
-import com.bible.app.model.Verse;
 import com.bible.app.model.Word;
+import com.bible.app.text.Book;
+import com.bible.app.text.Chapter;
+import com.bible.app.text.Verse;
 
 @Service
 public class BibleService {
