@@ -74,6 +74,15 @@
 	</div>
 	<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
 	<script type="text/javascript" charset="utf-8" src="count.js"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+    	var books = /*[[${books}]]*/ "";
+		var chapters = /*[[${chapters}]]*/ "";
+		var verses = /*[[${verses}]]*/ "";
+		/*]]>*/
+		autocomplete(document.getElementById("inputBookFrom"), books);
+		autocomplete(document.getElementById("inputBookTo"), books);
+	</script>
 	<br>
 	<div class="countResult" id="countResult">
 		<span th:if="${section.bookFrom == null}"

@@ -58,6 +58,13 @@
 	</div>
 	<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
 	<script type="text/javascript" charset="utf-8" src="read.js"></script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+    	var books = /*[[${books}]]*/ "";
+		var chapters = /*[[${chapters}]]*/ "";
+		/*]]>*/
+		autocomplete(document.getElementById("inputBook"), books);
+	</script>
 	<br>
 	<div class="read">
 		<span th:if="${verses.size() == 0}"
@@ -71,7 +78,6 @@
 			</tr>
 		</table>
 	</div>
-
 </body>
 
 </html>

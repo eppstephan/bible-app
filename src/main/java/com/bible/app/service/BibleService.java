@@ -45,6 +45,30 @@ public class BibleService {
 		readIgnore();
 	}
 
+	public ArrayList<String> getBooksAsList() {
+		return new ArrayList<String>(bookMap.keySet());
+	}
+
+	public ArrayList<String> getChaptersAsList() {
+		ArrayList<String> chapters = new ArrayList<String>();
+		for (Book b : bookMap.values()) {
+			chapters.add("" + b.getChapter().size());
+		}
+		return chapters;
+	}
+
+	public ArrayList<ArrayList<String>> getVersesAsListOfLists() {
+		ArrayList<ArrayList<String>> verses = new ArrayList<ArrayList<String>>();
+		for (Book b : bookMap.values()) {
+			ArrayList<String> versesOfEachChapter = new ArrayList<String>();
+			for (Chapter c : b.getChapter().values()) {
+				versesOfEachChapter.add("" + c.getVerses().size());
+			}
+			verses.add(versesOfEachChapter);
+		}
+		return verses;
+	}
+
 	/**
 	 * Returns an array list of verses according to the specified passage.
 	 * 

@@ -36,6 +36,8 @@ public class BibleController {
 
 	@GetMapping("/read")
 	public String read(Model model) {
+		model.addAttribute("books", bibleService.getBooksAsList());
+		model.addAttribute("chapters", bibleService.getChaptersAsList());
 		model.addAttribute("passage", new Passage());
 		model.addAttribute("verses", new ArrayList<Verse>());
 		return "read";
@@ -43,8 +45,9 @@ public class BibleController {
 
 	@PostMapping("/read")
 	public String readPassage(@ModelAttribute("passage") Passage passage, Model model) {
-		ArrayList<Verse> verses = bibleService.getVerses(passage);
-		model.addAttribute("verses", verses);
+		model.addAttribute("books", bibleService.getBooksAsList());
+		model.addAttribute("chapters", bibleService.getChaptersAsList());
+		model.addAttribute("verses", bibleService.getVerses(passage));
 		model.addAttribute("passage", passage);
 		return "read";
 	}
@@ -65,6 +68,9 @@ public class BibleController {
 
 	@GetMapping("/count")
 	public String count(Model model) {
+		model.addAttribute("books", bibleService.getBooksAsList());
+		model.addAttribute("chapters", bibleService.getChaptersAsList());
+		model.addAttribute("verses", bibleService.getVersesAsListOfLists());
 		model.addAttribute("section", new Section());
 		model.addAttribute("words", new ArrayList<Word>());
 		return "count";
@@ -72,9 +78,11 @@ public class BibleController {
 
 	@PostMapping("/count")
 	public String countPassage(@ModelAttribute("Section") Section section, Model model) {
-		List<Word> words = bibleService.countWords(section);
+		model.addAttribute("books", bibleService.getBooksAsList());
+		model.addAttribute("chapters", bibleService.getChaptersAsList());
+		model.addAttribute("verses", bibleService.getVersesAsListOfLists());
 		model.addAttribute("section", section);
-		model.addAttribute("words", words);
+		model.addAttribute("words", bibleService.countWords(section));
 		return "count";
 	}
 }
