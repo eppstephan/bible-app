@@ -77,7 +77,7 @@ public class BibleController {
 	}
 
 	@PostMapping("/count")
-	public String countPassage(@ModelAttribute("Section") Section section, Model model) {
+	public String countPassage(@ModelAttribute("section") Section section, Model model) {
 		model.addAttribute("books", bibleService.getBooksAsList());
 		model.addAttribute("chapters", bibleService.getChaptersAsList());
 		model.addAttribute("verses", bibleService.getVersesAsListOfLists());
