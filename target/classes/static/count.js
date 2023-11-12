@@ -42,34 +42,26 @@ function init() {
 function checkResultSize() {
 	var table = document.getElementById('wordsTable');
 	var countResultButton = document.getElementById("countResultButton");
-	var size = 12;
-	fillWordsTable(table, size, countResultButton);
+	var sizeDelta = 12;
+	var totalSize = words.length < sizeDelta ? words.length : sizeDelta;
+	countResultButton.style.visibility = totalSize < words.length ? "visible" : "hidden";
+	fillWordsTable(table, totalSize, countResultButton);
 
 	countResultButton.addEventListener("click", function() {
-		if (size == 12) {
-			size = words.length;
-		} else if (size == words.length) {
-			size = 12;
+		if (totalSize + sizeDelta <= words.length) {
+			totalSize += sizeDelta;
+			countResultButton.style.visibility = "visible";
+		} else {
+			totalSize = words.length;
+			countResultButton.style.visibility = "hidden";
 		}
-		if (countResultButton.textContent == "Alle") {
-			countResultButton.textContent = "Weniger";
-		} else if (countResultButton.textContent == "Weniger") {
-			countResultButton.textContent = "Alle";
-		}
-		fillWordsTable(table, size, countResultButton);
+		fillWordsTable(table, totalSize, countResultButton);
 	});
 }
 
-function fillWordsTable(table, size, countResultButton) {
-	table.innerHTML = "";
+function fillWordsTable(table, size) {
 	if (words.length > 0) {
-		if (words.length > size) {
-			countResultButton.style.visibility = "visible";
-		} else if (words.length < size) {
-			countResultButton.style.visibility = "hidden";
-			size = words.length;
-		}
-
+		table.innerHTML = "";
 		var t = "";
 		var tr = "<tr><th align=\"center\"># &nbsp</th><th>Wort</th></tr>";
 		t += tr;
@@ -78,14 +70,9 @@ function fillWordsTable(table, size, countResultButton) {
 			tr += "<td>" + words[i].name + "</td></tr>";
 			t += tr;
 		}
-		var tr = "<tr><td colspan=\"2\">&nbsp</td></tr>";
+		var tr = "<tr><td colspan=\"2\" style=\"color:#ccc;\">" + size + " von " + words.length + "</td></tr>";
 		t += tr;
-		tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + size + " von " + words.length + "</td></tr>";
-		t += tr;
-		
 		table.innerHTML += t;
-	} else {
-		countResultButton.style.visibility = "hidden";
 	}
 }
 
