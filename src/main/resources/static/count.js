@@ -65,10 +65,10 @@ function fillWordsTable(table, size) {
 	if (words.length > 0) {
 		table.innerHTML = "";
 		var t = "";
-		var tr = "<tr><th align=\"center\"># &nbsp</th><th>Wort</th></tr>";
+		var tr = "<tr><th class=\"count\">#</th><th>Wort</th></tr>";
 		t += tr;
 		for (var i = 0; i < size; i++) {
-			var tr = "<tr><td>" + words[i].count + "</td>";
+			var tr = "<tr><td class=\"count\">" + words[i].count + "</td>";
 			tr += "<td>" + words[i].name + "</td></tr>";
 			t += tr;
 		}
