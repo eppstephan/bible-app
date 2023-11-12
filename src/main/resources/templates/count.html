@@ -94,10 +94,10 @@
 			th:text="'Gezählt werden die Wörter in einem bestimmten Abschnitt. Der Abschnitt wird bestimmt von der ersten Stelle mit Buch, Kapitel und Vers bis zur zweiten Stelle mit Buch, Kapitel und Vers.'"></span>
 
 		<span th:if="${section.bookFrom != null}"
-			th:text="'Insgesamt wurden ' + ${words.size()} + ' Wörter von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis '"></span>
+			th:text="'Insgesamt wurden ' + ${words.size()} + ' Wörter gezählt im Abschnitt von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis '"></span>
 		<span th:if="${section.bookTo != null}"
-			th:text="${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + ' gezählt.'"></span>
-		<span th:if="${section.bookFrom != null}" th:text="'Die Tabelle zeigt die Anzahl (#), wie oft ein Wort gezählt wurde.'"></span>
+			th:text="${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + '.'"></span>
+		<span th:if="${section.bookFrom != null}" th:text="'Die Tabelle zeigt die Anzahl (#) für jedes Wort, wie oft es gezählt wurde.'"></span>
 		<br><br>
 		<table id="wordsTable"></table>
 	</div>

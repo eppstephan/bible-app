@@ -151,6 +151,11 @@ div.countResultButton {
 	text-align: center;
 }
 
+div.countResultButton.disable {
+	background-color: darkgray;
+	cursor: default;
+}
+
 div.searchResult {
 	z-index: 0;
 	margin-top: 165px;

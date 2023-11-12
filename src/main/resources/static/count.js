@@ -45,17 +45,19 @@ function checkResultSize() {
 	var sizeDelta = 12;
 	var totalSize = words.length < sizeDelta ? words.length : sizeDelta;
 	countResultButton.style.visibility = totalSize < words.length ? "visible" : "hidden";
-	fillWordsTable(table, totalSize, countResultButton);
+	fillWordsTable(table, totalSize);
 
 	countResultButton.addEventListener("click", function() {
 		if (totalSize + sizeDelta <= words.length) {
 			totalSize += sizeDelta;
 			countResultButton.style.visibility = "visible";
-		} else {
+			countResultButton.className = "countResultButton";
+			fillWordsTable(table, totalSize, countResultButton);
+		} else if (totalSize < words.length) {
 			totalSize = words.length;
-			countResultButton.style.visibility = "hidden";
+			countResultButton.className += " disable";
+			fillWordsTable(table, totalSize);
 		}
-		fillWordsTable(table, totalSize, countResultButton);
 	});
 }
 
