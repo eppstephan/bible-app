@@ -84,7 +84,12 @@
 		autocomplete(document.getElementById("inputBookTo"), books);
 	</script>
 	<br>
-	<div class="countResult" id="countResult">
+	<div class="countResult">
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+	    	var words = /*[[${words}]]*/ "";
+			/*]]>*/
+		</script>
 		<span th:if="${section.bookFrom == null}"
 			th:text="'Gezählt werden die Wörter in einem bestimmten Abschnitt. Der Abschnitt wird bestimmt von der ersten Stelle mit Buch, Kapitel und Vers bis zur zweiten Stelle mit Buch, Kapitel und Vers.'"></span>
 
@@ -93,18 +98,9 @@
 		<span th:if="${section.bookTo != null}"
 			th:text="${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + ':'"></span>
 		<br><br>
-		<table>
-			<tr>
-				<th th:if="${words.size() > 0}" th:text="Wort"></th>
-				<th th:if="${words.size() > 0}" th:text="Treffer"></th>
-			</tr>
-			<tr th:each="word : ${words}" valign="top">
-				<td th:if="${word.count > 0}" th:text="${word.name}"></td>
-				<td class="count" th:if="${word.count > 0}" th:text="${word.count}"></td>
-			</tr>
-		</table>
+		<table id="wordsTable"></table>
 	</div>
-	<div class="countResultButton" id="countResultButton">Mehr</div>
+	<div class="countResultButton" id="countResultButton">Alle</div>
 </body>
 
 </html>

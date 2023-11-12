@@ -139,19 +139,7 @@ div.countResult {
 	text-align: justify;
 }
 
-div.sizedCountResult {
-	z-index: 0;
-	margin-top: 265px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 10px;
-	text-align: justify;
-	height: 305px;
-	overflow: hidden;
-}
-
 div.countResultButton {
-	margin-top: 10px;
 	margin-left: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
@@ -159,11 +147,7 @@ div.countResultButton {
 	display: inline-block;
 	color: #fff;
 	cursor: pointer;
-	width: 100px;
-	text-align: center;
-}
-
-td.count {
+	width: 80px;
 	text-align: center;
 }
 
