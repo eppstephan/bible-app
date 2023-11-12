@@ -151,41 +151,70 @@ public class BibleService {
 
 	private Section getCurrentSection(Search search) {
 		Section section = new Section();
-		switch (search.getSection()) {
-		case "Alle":
-			section.setBookFrom("1. Mose");
-			section.setChapterFrom(1);
-			section.setVerseFrom(1);
-			section.setBookTo("Offenbarung");
-			section.setChapterTo(22);
-			section.setVerseTo(21);
-			break;
-		case "AT":
-			section.setBookFrom("1. Mose");
-			section.setChapterFrom(1);
-			section.setVerseFrom(1);
-			section.setBookTo("Maleachi");
-			section.setChapterTo(3);
-			section.setVerseTo(18);
-			break;
-		case "NT":
-			section.setBookFrom("Matthäus");
-			section.setChapterFrom(1);
-			section.setVerseFrom(1);
-			section.setBookTo("Offenbarung");
-			section.setChapterTo(22);
-			section.setVerseTo(21);
-			break;
-		default:
-			section.setBookFrom("1. Mose");
-			section.setChapterFrom(1);
-			section.setVerseFrom(1);
-			section.setBookTo("Offenbarung");
-			section.setChapterTo(22);
-			section.setVerseTo(21);
-			break;
+		if (bookMap.containsKey(search.getSection())) {
+			section = getSection(bookMap.get(search.getSection()));
+		} else {
+			switch (search.getSection()) {
+			case "Alle":
+				section.setBookFrom("1. Mose");
+				section.setChapterFrom(1);
+				section.setVerseFrom(1);
+				section.setBookTo("Offenbarung");
+				section.setChapterTo(22);
+				section.setVerseTo(21);
+				break;
+			case "AT":
+				section.setBookFrom("1. Mose");
+				section.setChapterFrom(1);
+				section.setVerseFrom(1);
+				section.setBookTo("Maleachi");
+				section.setChapterTo(3);
+				section.setVerseTo(18);
+				break;
+			case "NT":
+				section.setBookFrom("Matthäus");
+				section.setChapterFrom(1);
+				section.setVerseFrom(1);
+				section.setBookTo("Offenbarung");
+				section.setChapterTo(22);
+				section.setVerseTo(21);
+				break;
+			default:
+				section.setBookFrom("1. Mose");
+				section.setChapterFrom(1);
+				section.setVerseFrom(1);
+				section.setBookTo("Offenbarung");
+				section.setChapterTo(22);
+				section.setVerseTo(21);
+				break;
+			}
 		}
 		return section;
+	}
+
+	private Section getSection(Book book) {
+		Section section = new Section();
+		section.setBookFrom(book.getName());
+		section.setChapterFrom(1);
+		section.setVerseFrom(1);
+		section.setBookTo(book.getName());
+		section.setChapterTo(getLastChapter(book).getChapter());
+		section.setVerseTo(getLastVerse(getLastChapter(book)).getNumber());
+		return section;
+	}
+
+	private Chapter getLastChapter(Book book) {
+		Chapter lastChapter = null;
+		for (Chapter c : book.getChapter().values())
+			lastChapter = c;
+		return lastChapter;
+	}
+
+	private Verse getLastVerse(Chapter chapter) {
+		Verse lastVerse = null;
+		for (Verse v : chapter.getVerses().values())
+			lastVerse = v;
+		return lastVerse;
 	}
 
 	/**

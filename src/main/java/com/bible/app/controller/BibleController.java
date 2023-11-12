@@ -1,7 +1,6 @@
 package com.bible.app.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -54,6 +53,7 @@ public class BibleController {
 
 	@GetMapping("/search")
 	public String search(Model model) {
+		model.addAttribute("books", bibleService.getBooksAsList());
 		model.addAttribute("search", new Search());
 		model.addAttribute("findings", new ArrayList<Finding>());
 		return "search";
@@ -61,8 +61,8 @@ public class BibleController {
 
 	@PostMapping("/search")
 	public String searchResult(@ModelAttribute("search") Search search, Model model) {
-		List<Finding> findings = bibleService.search(search);
-		model.addAttribute("findings", findings);
+		model.addAttribute("books", bibleService.getBooksAsList());
+		model.addAttribute("findings", bibleService.search(search));
 		return "search";
 	}
 

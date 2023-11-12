@@ -46,10 +46,6 @@
 				<div class="select">
 					<select class="search" id="selectSearch" type="text" name="section" th:field="*{section}"
 						disabled="true" onchange="setSubmitSearch()">
-						<option value="Bücher">Bücher</option>
-						<option value="All">Alle</option>
-						<option value="AT">AT</option>
-						<option value="NT">NT</option>
 					</select>
 				</div>
 				<div class="search">
@@ -60,13 +56,20 @@
 	</div>
 	<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
 	<script type="text/javascript" charset="utf-8" src="search.js"></script>
+		<script th:inline="javascript">
+		/*<![CDATA[*/
+    	var books = /*[[${books}]]*/ "";
+    	var selectedSearchValue = /*[[${search.section}]]*/ ""
+		/*]]>*/
+	</script>
 	<br>
 	<div class="searchResult">
 		<span th:if="${search.search == null}"
 			th:utext="'Für die Suche ist Groß- und Kleinschreibung nicht relevant. Ist der Suchbegriff ein Teil eines Wortes, gilt dies auch als Treffer.'"></span>
 		<span th:if="${search.search != null}" th:utext="'Die Suche nach <b>' + ${search.search} + '</b>'"></span>
-		<span th:if="${search.section != null && search.section == 'All'}" th:text="'in allen Büchern '"></span>
-		<span th:if="${search.section != null && search.section != 'All'}" th:text="'im ' + ${search.section}"></span>
+		<span th:if="${search.section != null && search.section == 'Alle'}" th:text="'in allen Büchern '"></span>
+		<span th:if="${search.section != null && (search.section == 'AT' || search.section == 'NT')}" th:text="'im ' + ${search.section}"></span>
+		<span th:if="${search.section != null && search.section != 'Alle' && search.section != 'AT' && search.section != 'NT'}" th:text="'in ' + ${search.section}"></span>
 		<span th:if="${search.section != null}" th:text="'hat'"></span>
 		<span th:if="${search.section != null && findings.size() == 1}" th:text="'einen Vers getroffen.'"></span>
 		<span th:if="${search.section != null && findings.size() > 1}"
