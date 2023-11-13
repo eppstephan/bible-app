@@ -72,7 +72,7 @@ function fillWordsTable(table, size) {
 			tr += "<td>" + words[i].name + "</td></tr>";
 			t += tr;
 		}
-		var tr = "<tr><td colspan=\"2\" style=\"color:#ccc;\">" + size + " von " + words.length + "</td></tr>";
+		var tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + size + " von " + words.length + "</td></tr>";
 		t += tr;
 		table.innerHTML += t;
 	}

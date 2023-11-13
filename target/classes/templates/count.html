@@ -79,6 +79,7 @@
     	var books = /*[[${books}]]*/ "";
 		var chapters = /*[[${chapters}]]*/ "";
 		var verses = /*[[${verses}]]*/ "";
+		var words = /*[[${words}]]*/ "";
 		var chapterFrom = /*[[${section.chapterFrom}]]*/ "";
 		var verseFrom = /*[[${section.verseFrom}]]*/ "";
 		var chapterTo = /*[[${section.chapterTo}]]*/ "";
@@ -89,14 +90,8 @@
 	</script>
 	<br>
 	<div class="countResult">
-		<script th:inline="javascript">
-			/*<![CDATA[*/
-	    	var words = /*[[${words}]]*/ "";
-			/*]]>*/
-		</script>
 		<span th:if="${section.bookFrom == null}"
 			th:text="'Gezählt werden die Wörter in einem bestimmten Abschnitt. Der Abschnitt wird bestimmt von der ersten Stelle mit Buch, Kapitel und Vers bis zur zweiten Stelle mit Buch, Kapitel und Vers.'"></span>
-
 		<span th:if="${section.bookFrom != null}"
 			th:text="'Insgesamt wurden ' + ${words.size()} + ' Wörter gezählt im Abschnitt von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis '"></span>
 		<span th:if="${section.bookTo != null}"
