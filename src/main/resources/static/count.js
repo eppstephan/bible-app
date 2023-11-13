@@ -289,11 +289,9 @@ function checkSubmit() {
 			|| (books.indexOf(inputBookFrom.value) < books.indexOf(inputBookTo.value))
 		)
 	) {
-		var submit = document.getElementById('submit');
-		submit.disabled = false;
+		document.getElementById('submit').disabled = false;
 	} else {
-		var submit = document.getElementById('submit');
-		submit.disabled = true;
+		document.getElementById('submit').disabled = true;
 	}
 }
 
