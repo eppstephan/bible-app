@@ -12,9 +12,9 @@ function init() {
 		selectVerseFrom.options.add(new Option("Vers"));
 	} else {
 		populateChapters(inputBookFrom.value, inputBookFrom.name);
-		selectChapterFrom.value = localStorage.getItem('chapterFrom');
+		selectChapterFrom.value = chapterFrom;
 		populateVersesFrom();
-		selectVerseFrom.value = localStorage.getItem('verseFrom');
+		selectVerseFrom.value = verseFrom;
 	}
 	// Initialize the "to" form fields
 	var inputBookTo = document.getElementById('inputBookTo');
@@ -29,9 +29,9 @@ function init() {
 		selectVerseTo.options.add(new Option("Vers"));
 	} else {
 		populateChapters(inputBookTo.value, inputBookTo.name);
-		selectChapterTo.value = localStorage.getItem('chapterTo');
+		selectChapterTo.value = chapterTo;
 		populateVersesTo();
-		selectVerseTo.value = localStorage.getItem('verseTo');
+		selectVerseTo.value = verseTo;
 	}
 	// Initialize the submit button
 	checkSubmit();
@@ -298,19 +298,11 @@ function checkSubmit() {
 }
 
 function doSubmit() {
-	var selectChapterFrom = document.getElementById('selectChapterFrom');
 	var selectVerseFrom = document.getElementById('selectVerseFrom');
-	var selectChapterTo = document.getElementById('selectChapterTo');
 	var selectVerseTo = document.getElementById('selectVerseTo');
 
 	if (/*selectChapterFrom.value != 'Kapitel' && selectChapterTo.value != 'Kapitel' &&*/
 		selectVerseFrom.value != 'Vers' && selectVerseTo.value != 'Vers') {
-		localStorage.setItem('chapterFrom', selectChapterFrom.value);
-		localStorage.setItem('verseFrom', selectVerseFrom.value);
-
-		localStorage.setItem('chapterTo', selectChapterTo.value);
-		localStorage.setItem('verseTo', selectVerseTo.value);
-
 		document.getElementById('form').submit();
 	}
 }
