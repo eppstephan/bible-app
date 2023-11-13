@@ -40,33 +40,40 @@ public class BibleService {
 	 */
 	private HashSet<String> ignore;
 
+	ArrayList<String> booksAsList;
+
+	ArrayList<String> chaptersAsList;
+
+	ArrayList<ArrayList<String>> versesAsListOfLists;
+
 	public BibleService() throws FileNotFoundException, IOException {
 		readBibleLuther1912();
 		readIgnore();
-	}
 
-	public ArrayList<String> getBooksAsList() {
-		return new ArrayList<String>(bookMap.keySet());
-	}
+		booksAsList = new ArrayList<String>(bookMap.keySet());
+		chaptersAsList = new ArrayList<String>();
+		versesAsListOfLists = new ArrayList<ArrayList<String>>();
 
-	public ArrayList<String> getChaptersAsList() {
-		ArrayList<String> chapters = new ArrayList<String>();
 		for (Book b : bookMap.values()) {
-			chapters.add("" + b.getChapter().size());
-		}
-		return chapters;
-	}
-
-	public ArrayList<ArrayList<String>> getVersesAsListOfLists() {
-		ArrayList<ArrayList<String>> verses = new ArrayList<ArrayList<String>>();
-		for (Book b : bookMap.values()) {
+			chaptersAsList.add("" + b.getChapter().size());
 			ArrayList<String> versesOfEachChapter = new ArrayList<String>();
 			for (Chapter c : b.getChapter().values()) {
 				versesOfEachChapter.add("" + c.getVerses().size());
 			}
-			verses.add(versesOfEachChapter);
+			versesAsListOfLists.add(versesOfEachChapter);
 		}
-		return verses;
+	}
+
+	public ArrayList<String> getBooksAsList() {
+		return booksAsList;
+	}
+
+	public ArrayList<String> getChaptersAsList() {
+		return chaptersAsList;
+	}
+
+	public ArrayList<ArrayList<String>> getVersesAsListOfLists() {
+		return versesAsListOfLists;
 	}
 
 	/**
@@ -154,38 +161,43 @@ public class BibleService {
 		if (bookMap.containsKey(search.getSection())) {
 			section = getSection(bookMap.get(search.getSection()));
 		} else {
+			Book bookTo = null;
 			switch (search.getSection()) {
 			case "Alle":
 				section.setBookFrom("1. Mose");
 				section.setChapterFrom(1);
 				section.setVerseFrom(1);
-				section.setBookTo("Offenbarung");
-				section.setChapterTo(22);
-				section.setVerseTo(21);
+				bookTo = bookMap.get("Offenbarung");
+				section.setBookTo(bookTo.getName());
+				section.setChapterTo(getLastChapter(bookTo).getChapter());
+				section.setVerseTo(getLastVerse(getLastChapter(bookTo)).getNumber());
 				break;
 			case "AT":
 				section.setBookFrom("1. Mose");
 				section.setChapterFrom(1);
 				section.setVerseFrom(1);
-				section.setBookTo("Maleachi");
-				section.setChapterTo(3);
-				section.setVerseTo(18);
+				bookTo = bookMap.get("Maleachi");
+				section.setBookTo(bookTo.getName());
+				section.setChapterTo(getLastChapter(bookTo).getChapter());
+				section.setVerseTo(getLastVerse(getLastChapter(bookTo)).getNumber());
 				break;
 			case "NT":
 				section.setBookFrom("Matthäus");
 				section.setChapterFrom(1);
 				section.setVerseFrom(1);
-				section.setBookTo("Offenbarung");
-				section.setChapterTo(22);
-				section.setVerseTo(21);
+				bookTo = bookMap.get("Offenbarung");
+				section.setBookTo(bookTo.getName());
+				section.setChapterTo(getLastChapter(bookTo).getChapter());
+				section.setVerseTo(getLastVerse(getLastChapter(bookTo)).getNumber());
 				break;
 			default:
 				section.setBookFrom("1. Mose");
 				section.setChapterFrom(1);
 				section.setVerseFrom(1);
-				section.setBookTo("Offenbarung");
-				section.setChapterTo(22);
-				section.setVerseTo(21);
+				bookTo = bookMap.get("Offenbarung");
+				section.setBookTo(bookTo.getName());
+				section.setChapterTo(getLastChapter(bookTo).getChapter());
+				section.setVerseTo(getLastVerse(getLastChapter(bookTo)).getNumber());
 				break;
 			}
 		}
@@ -204,17 +216,11 @@ public class BibleService {
 	}
 
 	private Chapter getLastChapter(Book book) {
-		Chapter lastChapter = null;
-		for (Chapter c : book.getChapter().values())
-			lastChapter = c;
-		return lastChapter;
+		return book.getChapter().get(book.getChapter().size());
 	}
 
 	private Verse getLastVerse(Chapter chapter) {
-		Verse lastVerse = null;
-		for (Verse v : chapter.getVerses().values())
-			lastVerse = v;
-		return lastVerse;
+		return chapter.getVerses().get(chapter.getVerses().size());
 	}
 
 	/**

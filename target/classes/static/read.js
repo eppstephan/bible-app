@@ -6,9 +6,9 @@ function init() {
 		selectChapter.options.add(new Option("Kapitel"));
 	} else {
 		populateChapters(inputBook.value);
-		selectChapter.value = localStorage.getItem("selectedChapterKey");
+		selectChapter.value = selectedChapterValue;
 	}
-
+	// Initialize the navigation
 	initNavigation();
 }
 
@@ -34,7 +34,6 @@ function goToPrevChapter() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) > 1){
 		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
-		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();
 	}
 }
@@ -44,7 +43,6 @@ function goToNextChapter() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
 		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
-		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();		
 	}
 }
@@ -171,7 +169,6 @@ function autocomplete(input, possibleValues) {
 function doSubmit() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (selectChapter.value != 'Kapitel') {
-		localStorage.setItem("selectedChapterKey", selectChapter.value);
 		document.getElementById('form').submit();
 	}
 }
