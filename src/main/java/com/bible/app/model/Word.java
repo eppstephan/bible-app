@@ -6,11 +6,15 @@ public class Word implements Comparable<Word> {
 	 * Counts how often this word occurs.
 	 */
 	private int count;
+	private boolean ignore;
+	private int index;
 
-	public Word(String name, int count) {
+	public Word(String name, int count, boolean ignore) {
 		super();
 		this.name = name;
 		this.count = count;
+		this.ignore = ignore;
+
 	}
 
 	public String getName() {
@@ -34,5 +38,21 @@ public class Word implements Comparable<Word> {
 		if (o.getCount() == this.getCount())
 			return 0;
 		return o.getCount() < this.getCount() ? -1 : 1;
+	}
+
+	public boolean isIgnore() {
+		return ignore;
+	}
+
+	public void setIgnore(boolean ignore) {
+		this.ignore = ignore;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 }

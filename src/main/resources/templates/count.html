@@ -76,7 +76,7 @@
 	<script type="text/javascript" charset="utf-8" src="count.js"></script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
-    	var books = /*[[${books}]]*/ "";
+		var books = /*[[${books}]]*/ "";
 		var chapters = /*[[${chapters}]]*/ "";
 		var verses = /*[[${verses}]]*/ "";
 		var words = /*[[${words}]]*/ "";
@@ -93,14 +93,19 @@
 		<span th:if="${section.bookFrom == null}"
 			th:text="'Gezählt werden die Wörter in einem bestimmten Abschnitt. Der Abschnitt wird bestimmt von der ersten Stelle mit Buch, Kapitel und Vers bis zur zweiten Stelle mit Buch, Kapitel und Vers.'"></span>
 		<span th:if="${section.bookFrom != null}"
-			th:text="'Insgesamt wurden ' + ${words.size()} + ' Wörter gezählt im Abschnitt von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis '"></span>
-		<span th:if="${section.bookTo != null}"
-			th:text="${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + '.'"></span>
-		<span th:if="${section.bookFrom != null}" th:text="'Die Tabelle zeigt die Anzahl (#) für jedes Wort, wie oft es gezählt wurde.'"></span>
+			th:text="'Es wurden ' + ${words.size()} + ' unterschiedliche Wörter von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis ' + ${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + ' gezählt.'"></span>
+		<span th:if="${section.bookFrom != null}"
+			th:utext="'Die Tabellen zeigen jeweils die Anzahl (#) für jedes Wort, wie oft es wirklich gezählt oder ignoriert wurde. Mit <span style=&quot;color: red; font-weight: bold;&quot;>&#8722</span> oder <span style=&quot;color: green; font-weight: bold;&quot;>+</span> kann ein Wort ignoriert oder gezählt werden.'"></span>
 		<br><br>
-		<table id="wordsTable"></table>
+		<div style="float:left; width:170px;">
+			<table id="wordsTable"></table>
+			<span class="wordsResultButton" id="countResultButton">Mehr</span>
+		</div>
+		<div style="float:left;">
+			<table id="ignoreTable" class="ignoreTable"></table>
+			<span class="wordsResultButton" id="ignoreResultButton">Mehr</span>
+		</div>
 	</div>
-	<span class="countResultButton" id="countResultButton">Mehr</span> 
 </body>
 
 </html>

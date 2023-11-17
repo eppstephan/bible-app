@@ -144,8 +144,12 @@ div.countResult {
 	padding: 0 10px 0 0;
 }
 
-span.countResultButton {
-	margin-left: 10px;
+table.ignoreTable {
+	color: #777;
+}
+
+span.wordsResultButton {
+	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
 	background: #355779;
@@ -156,7 +160,7 @@ span.countResultButton {
 	text-align: center;
 }
 
-span.countResultButton.disable {
+span.wordsResultButton.disable {
 	background-color: darkgray;
 	cursor: default;
 }
