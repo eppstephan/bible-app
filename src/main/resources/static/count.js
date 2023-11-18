@@ -68,7 +68,7 @@ function checkResultSize() {
 }
 
 function countResultButtonListener() {
-	if (currentCountSize + sizeDelta <= countWords.length) {
+	if (currentCountSize + sizeDelta < countWords.length) {
 		currentCountSize += sizeDelta;
 		countResultButton.style.visibility = "visible";
 		countResultButton.className = "wordsResultButton";
@@ -81,7 +81,7 @@ function countResultButtonListener() {
 }
 
 function ignoreResultButtonListener() {
-	if (currentIgnoreSize + sizeDelta <= ignoreWords.length) {
+	if (currentIgnoreSize + sizeDelta < ignoreWords.length) {
 		currentIgnoreSize += sizeDelta;
 		ignoreResultButton.style.visibility = "visible";
 		ignoreResultButton.className = "wordsResultButton";
