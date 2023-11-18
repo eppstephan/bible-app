@@ -54,7 +54,7 @@ var ignoreResultButton = null;
 function checkResultSize() {
 	countResultButton = document.getElementById("countResultButton");
 	ignoreResultButton = document.getElementById("ignoreResultButton");
-	
+
 	currentCountSize = countWords.length < sizeDelta ? countWords.length : sizeDelta;
 	currentIgnoreSize = ignoreWords.length < sizeDelta ? ignoreWords.length : sizeDelta;
 	countResultButton.style.visibility = currentCountSize < countWords.length ? "visible" : "hidden";
@@ -161,7 +161,7 @@ function removeWord(index) {
 
 	if (currentCountSize <= sizeDelta && currentCountSize == countWords.length) {
 		countResultButton.style.visibility = "hidden";
-	} else if(currentCountSize == countWords.length) {
+	} else if (currentCountSize == countWords.length) {
 		countResultButton.className += " disable";
 	}
 	if (currentIgnoreSize > sizeDelta && ignoreResultButton.style.visibility == "hidden") {
@@ -184,13 +184,13 @@ function addWord(index) {
 	if (currentIgnoreSize == ignoreWords.length + 1) {
 		currentIgnoreSize--;
 	}
-	
+
 	if (currentIgnoreSize <= sizeDelta && currentIgnoreSize == ignoreWords.length) {
 		ignoreResultButton.style.visibility = "hidden";
 	} else if (currentIgnoreSize == ignoreWords.length) {
 		ignoreResultButton.className += " disable";
 	}
-	if (currentCountSize > sizeDelta  && countResultButton.style.visibility == "hidden") {
+	if (currentCountSize > sizeDelta && countResultButton.style.visibility == "hidden") {
 		countResultButton.style.visibility = "visible";
 		countResultButton.className = "wordsResultButton";
 		currentCountSize = sizeDelta;
