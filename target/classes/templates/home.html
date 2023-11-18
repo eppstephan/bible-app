@@ -13,12 +13,14 @@
 </head>
 
 <body>
-	<div class="topnav" id="topnav">
-		<a href="/home" class="active">Home</a>
-		<a href="/read">Lesen</a>
-		<a href="/search">Suchen</a>
-		<a href="/count">Zählen</a>
-		<!-- <div class="dropdown">
+	<div id="overlay"></div>
+	<div class="header">
+		<div class="topnav" id="topnav">
+			<a href="/home" class="active">Home</a>
+			<a href="/read">Lesen</a>
+			<a href="/search">Suchen</a>
+			<a href="/count">Zählen</a>
+			<!-- <div class="dropdown">
 			<button class="dropbtn">Dropdown
 				<i class="fa fa-caret-down"></i>
 			</button>
@@ -28,17 +30,20 @@
 				<a href="#">Link 3</a>
 			</div>
 		</div> -->
-		<a href="/about">Über</a>
-		<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="handleTopNav()">&#9776;</a>
+			<a href="/about">Über</a>
+			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="handleTopNav()">&#9776;</a>
+		</div>
+		<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
+		<div class="headline">
+			<h2>Die Bibel</h2>
+			<h5>Nach der Übersetzung von Martin Luther 1912</h5>
+		</div>
 	</div>
-	<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
-	<div class="headline">
-		<h2>Die Bibel</h2>
-		<h5>Nach der Übersetzung von Martin Luther 1912</h5>
-	</div>
+	<br>
 	<div class="content">
 		Herzlich Willkommen auf der Web Applikation zur Bibel nach der Übersetzung von Martin Luther von 1912.
-		Diese Applikation bietet die Möglichkeit zum Lesen eines Kapitels oder zum Suchen eines Begriffs im Text der Bibel.
+		Diese Applikation bietet die Möglichkeit zum Lesen eines Kapitels oder zum Suchen eines Begriffs im Text der
+		Bibel.
 		Außerdem besteht die Möglichkeit, Wörter in einem vom Benutzer bestimmten Bibelabschnitt zählen zu lassen.
 	</div>
 </body>

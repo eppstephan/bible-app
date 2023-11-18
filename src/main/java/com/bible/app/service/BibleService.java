@@ -244,12 +244,10 @@ public class BibleService {
 		do {
 			String[] arrWords = getSplittedVerseText(currentPassage);
 			for (String s : arrWords) {
-				if (!ignore(s)) {
-					if (words.containsKey(s)) {
-						words.get(s).setCount(words.get(s).getCount() + 1);
-					} else {
-						words.put(s, new Word(s, 1));
-					}
+				if (words.containsKey(s)) {
+					words.get(s).setCount(words.get(s).getCount() + 1);
+				} else {
+					words.put(s, new Word(s, 1, ignore(s)));
 				}
 			}
 			goToNextPassage(currentPassage);

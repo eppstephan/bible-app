@@ -35,47 +35,169 @@ function init() {
 	}
 	// Initialize the submit button
 	checkSubmit();
+	// initialize word lists
+	initializeWordLists();
 	// Check the result size
 	checkResultSize();
 }
 
-function checkResultSize() {
-	var table = document.getElementById('wordsTable');
-	var countResultButton = document.getElementById("countResultButton");
-	var sizeDelta = 12;
-	var totalSize = words.length < sizeDelta ? words.length : sizeDelta;
-	countResultButton.style.visibility = totalSize < words.length ? "visible" : "hidden";
-	fillWordsTable(table, totalSize);
+var countWords = [];
+var ignoreWords = [];
 
-	countResultButton.addEventListener("click", function() {
-		if (totalSize + sizeDelta <= words.length) {
-			totalSize += sizeDelta;
-			countResultButton.style.visibility = "visible";
-			countResultButton.className = "countResultButton";
-			fillWordsTable(table, totalSize, countResultButton);
-		} else if (totalSize < words.length) {
-			totalSize = words.length;
-			countResultButton.className += " disable";
-			fillWordsTable(table, totalSize);
-		}
-	});
+var sizeDelta = 10;
+var currentCountSize = 0;
+var currentIgnoreSize = 0;
+
+var countResultButton = null;
+var ignoreResultButton = null;
+
+function checkResultSize() {
+	countResultButton = document.getElementById("countResultButton");
+	ignoreResultButton = document.getElementById("ignoreResultButton");
+
+	currentCountSize = countWords.length < sizeDelta ? countWords.length : sizeDelta;
+	currentIgnoreSize = ignoreWords.length < sizeDelta ? ignoreWords.length : sizeDelta;
+	countResultButton.style.visibility = currentCountSize < countWords.length ? "visible" : "hidden";
+	ignoreResultButton.style.visibility = currentIgnoreSize < ignoreWords.length ? "visible" : "hidden";
+
+	fillCountTable();
+	fillIgnoreTable();
+
+	countResultButton.addEventListener("click", countResultButtonListener);
+	ignoreResultButton.addEventListener("click", ignoreResultButtonListener);
 }
 
-function fillWordsTable(table, size) {
+function countResultButtonListener() {
+	if (currentCountSize + sizeDelta < countWords.length) {
+		currentCountSize += sizeDelta;
+		countResultButton.style.visibility = "visible";
+		countResultButton.className = "wordsResultButton";
+		fillCountTable();
+	} else if (currentCountSize < countWords.length) {
+		currentCountSize = countWords.length;
+		countResultButton.className += " disable";
+		fillCountTable();
+	}
+}
+
+function ignoreResultButtonListener() {
+	if (currentIgnoreSize + sizeDelta < ignoreWords.length) {
+		currentIgnoreSize += sizeDelta;
+		ignoreResultButton.style.visibility = "visible";
+		ignoreResultButton.className = "wordsResultButton";
+		fillIgnoreTable();
+	} else if (currentIgnoreSize < ignoreWords.length) {
+		currentIgnoreSize = ignoreWords.length;
+		ignoreResultButton.className += " disable";
+		fillIgnoreTable();
+	}
+}
+
+function initializeWordLists() {
+	ignoreWords = [];
+	countWords = [];
 	if (words.length > 0) {
-		table.innerHTML = "";
+		var indexIgnore = 0;
+		var indexCount = 0;
+		for (var i = 0; i < words.length; i++) {
+			words[i].index = i;
+			if (words[i].ignore) {
+				ignoreWords[indexIgnore] = words[i];
+				indexIgnore++;
+			} else {
+				countWords[indexCount] = words[i];
+				indexCount++;
+			}
+		}
+	}
+}
+
+function fillCountTable() {
+	var table = document.getElementById('wordsTable');
+	table.innerHTML = "";
+	if (countWords.length > 0) {
 		var t = "";
-		var tr = "<tr><th class=\"count\">#</th><th>Wort</th></tr>";
+		var tr = "<tr><th class=\"count\">#</th><th>Gezählt</th></tr>";
 		t += tr;
-		for (var i = 0; i < size; i++) {
-			var tr = "<tr><td class=\"count\">" + words[i].count + "</td>";
-			tr += "<td>" + words[i].name + "</td></tr>";
+		for (var i = 0; i < currentCountSize; i++) {
+			var tr = "<tr><td class=\"count\">" + countWords[i].count + "</td>";
+			tr += "<td>" + countWords[i].name + "<a href=\"javascript:void(0)\" onclick=\"removeWord('" + countWords[i].index + "');\"style=\"color: red; font-weight:bold;\">&nbsp&#8722&nbsp</a></td></tr>";
 			t += tr;
 		}
-		var tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + size + " von " + words.length + "</td></tr>";
+		var tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + currentCountSize + " von " + countWords.length + "</td></tr>";
 		t += tr;
 		table.innerHTML += t;
 	}
+}
+
+function fillIgnoreTable() {
+	var table = document.getElementById('ignoreTable');
+	table.innerHTML = "";
+	if (ignoreWords.length > 0) {
+		var t = "";
+		var tr = "<tr><th class=\"count\">#</th><th>Ignoriert</th></tr>";
+		t += tr;
+		for (var i = 0; i < currentIgnoreSize; i++) {
+			var tr = "<tr><td class=\"count\">" + ignoreWords[i].count + "</td>";
+			tr += "<td>" + ignoreWords[i].name + "<a href=\"javascript:void(0)\" onclick=\"addWord('" + ignoreWords[i].index + "');\" style=\"color: green; font-weight:bold;\">&nbsp+&nbsp</a></td></tr>";
+			t += tr;
+		}
+		var tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + currentIgnoreSize + " von " + ignoreWords.length + "</td></tr>";
+		t += tr;
+		table.innerHTML += t;
+	}
+}
+
+function removeWord(index) {
+	words[index].ignore = !words[index].ignore;
+	initializeWordLists();
+
+	if (currentCountSize == countWords.length + 1) {
+		currentCountSize--;
+	}
+	if (currentIgnoreSize == ignoreWords.length - 1) {
+		currentIgnoreSize++;
+	}
+
+	if (currentCountSize <= sizeDelta && currentCountSize == countWords.length) {
+		countResultButton.style.visibility = "hidden";
+	} else if (currentCountSize == countWords.length) {
+		countResultButton.className += " disable";
+	}
+	if (currentIgnoreSize > sizeDelta && ignoreResultButton.style.visibility == "hidden") {
+		ignoreResultButton.style.visibility = "visible";
+		ignoreResultButton.className = "wordsResultButton";
+		currentIgnoreSize = sizeDelta;
+	}
+
+	fillCountTable();
+	fillIgnoreTable();
+}
+
+function addWord(index) {
+	words[index].ignore = !words[index].ignore;
+	initializeWordLists();
+
+	if (currentCountSize == countWords.length - 1) {
+		currentCountSize++;
+	}
+	if (currentIgnoreSize == ignoreWords.length + 1) {
+		currentIgnoreSize--;
+	}
+
+	if (currentIgnoreSize <= sizeDelta && currentIgnoreSize == ignoreWords.length) {
+		ignoreResultButton.style.visibility = "hidden";
+	} else if (currentIgnoreSize == ignoreWords.length) {
+		ignoreResultButton.className += " disable";
+	}
+	if (currentCountSize > sizeDelta && countResultButton.style.visibility == "hidden") {
+		countResultButton.style.visibility = "visible";
+		countResultButton.className = "wordsResultButton";
+		currentCountSize = sizeDelta;
+	}
+
+	fillCountTable();
+	fillIgnoreTable();
 }
 
 function populateVersesFrom() {

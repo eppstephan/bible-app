@@ -8,6 +8,19 @@ body {
 	font: 16px Arial;
 }
 
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+
 a {
 	text-decoration: none;
 	color: dodgerblue;
@@ -35,7 +48,7 @@ div.header {
 	position: fixed;
 	left: 0px;
 	right: 0px;
-	z-index: 1;
+	z-index: 2;
 }
 
 div.headline {
@@ -43,11 +56,6 @@ div.headline {
 	padding-top: 10px;
 	padding-left: 10px;
 	background: #042647;
-}
-
-div.content {
-	padding: 0px 10px;
-	text-align: justify;
 }
 
 div.form {
@@ -111,6 +119,15 @@ table {
 	border-collapse: collapse;
 }
 
+div.content {
+	z-index: 0;
+	margin-top: 104px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	text-align: justify;
+}
+
 div.read {
 	z-index: 0;
 	margin-top: 165px;
@@ -144,8 +161,12 @@ div.countResult {
 	padding: 0 10px 0 0;
 }
 
-span.countResultButton {
-	margin-left: 10px;
+table.ignoreTable {
+	color: #777;
+}
+
+span.wordsResultButton {
+	margin-top: 10px;
 	margin-bottom: 10px;
 	padding: 10px;
 	background: #355779;
@@ -156,7 +177,7 @@ span.countResultButton {
 	text-align: center;
 }
 
-span.countResultButton.disable {
+span.wordsResultButton.disable {
 	background-color: darkgray;
 	cursor: default;
 }
