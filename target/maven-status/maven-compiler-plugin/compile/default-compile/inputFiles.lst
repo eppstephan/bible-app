@@ -1,11 +1,15 @@
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Verse.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Search.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\BibleCreator.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Passage.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Luther1912.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Finding.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Elberfelder.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Bible.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Book.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Chapter.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\service\BibleService.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\BibleApplication.java
-C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Passage.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Word.java
-C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Finding.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\controller\BibleController.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Section.java
