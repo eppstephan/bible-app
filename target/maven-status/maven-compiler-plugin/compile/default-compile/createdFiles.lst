@@ -1,12 +1,14 @@
 com\bible\app\model\Passage.class
 com\bible\app\model\Finding.class
 com\bible\app\creator\Bible.class
+com\bible\app\creator\Elberfelder1905.class
+com\bible\app\creator\Menge1939.class
 com\bible\app\model\Section.class
 com\bible\app\controller\BibleController.class
+com\bible\app\creator\Schlachter1951.class
 com\bible\app\text\Book.class
 com\bible\app\text\Chapter.class
 com\bible\app\service\BibleService.class
-com\bible\app\creator\Elberfelder.class
 com\bible\app\creator\Luther1912.class
 com\bible\app\text\Verse.class
 com\bible\app\BibleApplication.class

@@ -22,7 +22,9 @@ public class BibleService {
 
 	public BibleService() throws IOException {
 		Bible luther1912 = BibleCreator.getBible("Luther1912");
-		Bible elberfelder = BibleCreator.getBible("Elberfelder");
+		Bible elberfelder1905 = BibleCreator.getBible("Elberfelder1905");
+		Bible menge1939 = BibleCreator.getBible("Menge1939");
+		Bible schlachter1951 = BibleCreator.getBible("Schlachter1951");
 
 		active = luther1912;
 	}
