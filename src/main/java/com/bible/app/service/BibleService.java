@@ -6,13 +6,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bible.app.creator.Bible;
+import com.bible.app.creator.BibleCreator;
 import com.bible.app.model.Finding;
 import com.bible.app.model.Passage;
 import com.bible.app.model.Search;
 import com.bible.app.model.Section;
 import com.bible.app.model.Word;
-import com.bible.app.text.Bible;
-import com.bible.app.text.BibleCreator;
 import com.bible.app.text.Verse;
 
 @Service
