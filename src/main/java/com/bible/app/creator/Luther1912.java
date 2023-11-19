@@ -14,7 +14,8 @@ import com.bible.app.text.Verse;
 
 public class Luther1912 extends Bible {
 
-	public Luther1912() throws IOException {
+	public Luther1912(String name) throws IOException {
+		this.name = name;
 		readBible();
 		readIgnore();
 

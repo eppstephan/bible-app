@@ -39,6 +39,17 @@ function init() {
 	initializeWordLists();
 	// Check the result size
 	checkResultSize();
+	// Set the bible name
+	document.getElementById('inputBibleName').value = bibleName;
+}
+
+function setBibleName() {
+	if (!document.getElementById('submitCount').disabled) {
+		document.getElementById('inputBibleName').value = document.getElementById('selectBibleName').value;
+		document.getElementById('countForm').submit();
+	} else {
+		document.getElementById('bibleNameForm').submit();
+	}
 }
 
 var countWords = [];
@@ -411,9 +422,9 @@ function checkSubmit() {
 			|| (books.indexOf(inputBookFrom.value) < books.indexOf(inputBookTo.value))
 		)
 	) {
-		document.getElementById('submit').disabled = false;
+		document.getElementById('submitCount').disabled = false;
 	} else {
-		document.getElementById('submit').disabled = true;
+		document.getElementById('submitCount').disabled = true;
 	}
 }
 
@@ -423,6 +434,6 @@ function doSubmit() {
 
 	if (/*selectChapterFrom.value != 'Kapitel' && selectChapterTo.value != 'Kapitel' &&*/
 		selectVerseFrom.value != 'Vers' && selectVerseTo.value != 'Vers') {
-		document.getElementById('form').submit();
+		document.getElementById('countForm').submit();
 	}
 }

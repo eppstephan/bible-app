@@ -14,7 +14,8 @@ import com.bible.app.text.Verse;
 
 public class Schlachter1951 extends Bible {
 
-	public Schlachter1951() throws IOException {
+	public Schlachter1951(String name) throws IOException {
+		this.name = name;
 		readBible();
 		readIgnore();
 

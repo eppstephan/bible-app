@@ -14,7 +14,8 @@ import com.bible.app.text.Verse;
 
 public class Menge1939 extends Bible {
 
-	public Menge1939() throws IOException {
+	public Menge1939(String name) throws IOException {
+		this.name = name;
 		readBible();
 		readIgnore();
 

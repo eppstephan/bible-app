@@ -14,7 +14,8 @@ import com.bible.app.text.Verse;
 
 public class Elberfelder1905 extends Bible {
 
-	public Elberfelder1905() throws IOException {
+	public Elberfelder1905(String name) throws IOException {
+		this.name = name;
 		readBible();
 		readIgnore();
 

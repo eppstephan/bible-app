@@ -10,6 +10,18 @@ function init() {
 	}
 	// Initialize the navigation
 	initNavigation();
+	// Set the bible name
+	document.getElementById('inputBibleName').value = bibleName;
+}
+
+function setBibleName() {
+	var selectChapter = document.getElementById('selectChapter');
+	if (selectChapter.value != 'Kapitel') {
+		document.getElementById('inputBibleName').value = document.getElementById('selectBibleName').value;
+		document.getElementById('readForm').submit();
+	} else {
+		document.getElementById('bibleNameForm').submit();
+	}
 }
 
 function initNavigation() {
@@ -34,7 +46,7 @@ function goToPrevChapter() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) > 1){
 		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
-		document.getElementById('form').submit();
+		document.getElementById('readForm').submit();
 	}
 }
 
@@ -43,7 +55,7 @@ function goToNextChapter() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
 		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
-		document.getElementById('form').submit();		
+		document.getElementById('readForm').submit();		
 	}
 }
 
@@ -169,6 +181,6 @@ function autocomplete(input, possibleValues) {
 function doSubmit() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (selectChapter.value != 'Kapitel') {
-		document.getElementById('form').submit();
+		document.getElementById('readForm').submit();
 	}
 }

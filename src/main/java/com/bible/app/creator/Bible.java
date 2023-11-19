@@ -30,6 +30,8 @@ public abstract class Bible {
 
 	protected ArrayList<ArrayList<String>> versesAsListOfLists;
 
+	protected String name;
+
 	protected void readBible() throws IOException {
 	}
 
@@ -260,5 +262,9 @@ public abstract class Bible {
 
 	private int getBookPosition(String book) {
 		return bookMap.get(book).getPosition();
+	}
+
+	public String getName() {
+		return name;
 	}
 }

@@ -1,12 +1,24 @@
 function init() {
 	var selectSearch = document.getElementById("selectSearch");
 	var submitSearch = document.getElementById("submitSearch");
-	populateSelectSearch(selectSearch);		
+	populateSelectSearch(selectSearch);
 	if (selectSearch.value != 'Bücher') {
 		selectSearch.disabled = false;
 	}
 	if (inputSearch.value != '' && selectSearch.value != 'Bücher') {
 		submitSearch.disabled = false;
+	}
+	// Set the bible name
+	document.getElementById('inputBibleName').value = bibleName;
+}
+
+function setBibleName() {
+	var submitSearch = document.getElementById("submitSearch");
+	if (!submitSearch.disabled) {
+		document.getElementById('inputBibleName').value = document.getElementById('selectBibleName').value;
+		document.getElementById('searchForm').submit();
+	} else {
+		document.getElementById('bibleNameForm').submit();
 	}
 }
 

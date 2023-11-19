@@ -36,11 +36,25 @@
 
 		<div class="headline">
 			<h2>Wörter der Bibel zählen</h2>
-			<h5>Nach der Übersetzung von Martin Luther 1912</h5>
+			<h5>Nach der Übersetzung von</h5>
+			<form th:action="@{/count}" method="POST" style="display: inline;" id="bibleNameForm">
+				<select id="selectBibleName" type="text" th:value="${bibleName}" name="bibleName" onchange="setBibleName()"></select>
+			</form>
+			<script th:inline="javascript">
+				/*<![CDATA[*/
+				var bibles = /*[[${bibles}]]*/ "";
+				var bibleName = /*[[${bible.name}]]*/ "";
+				/*]]>*/
+				var selectBible = document.getElementById("selectBibleName");
+				for (var i = 0; i < bibles.length; i++) {
+					selectBible.options.add(new Option(bibles[i]));
+				}
+				selectBible.value = bibleName;
+			</script>
 		</div>
 		<!--Make sure the form has the autocomplete function switched off:-->
 		<div class="form">
-			<form autocomplete="off" th:action="@{/count}" th:object="${section}" method="POST" id="form">
+			<form autocomplete="off" th:action="@{/count}" th:object="${section}" method="POST" id="countForm">
 				<div class="passageFrom">
 					<div class="autocomplete">
 						<input id="inputBookFrom" type="text" placeholder="Buch" name="bookFrom" th:field="*{bookFrom}">
@@ -68,8 +82,9 @@
 					</div>
 				</div>
 				<div class="submit">
-					<input type="submit" id="submit" value="Zählen" onclick="doSubmit()" disabled="true">
+					<input type="submit" id="submitCount" value="Zählen" onclick="doSubmit()" disabled="true">
 				</div>
+				<input type="hidden" th:value="${bibleName}" name="bibleName" id="inputBibleName">
 			</form>
 		</div>
 	</div>

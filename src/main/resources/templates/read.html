@@ -36,11 +36,25 @@
 
 		<div class="headline">
 			<h2>Die Bibel lesen</h2>
-			<h5>Nach der Übersetzung von Martin Luther 1912</h5>
+			<h5>Nach der Übersetzung von</h5>
+			<form th:action="@{/read}" method="POST" style="display: inline;" id="bibleNameForm">
+				<select id="selectBibleName" type="text" th:value="${bibleName}" name="bibleName" onchange="setBibleName()"></select>
+			</form>
+			<script th:inline="javascript">
+				/*<![CDATA[*/
+				var bibles = /*[[${bibles}]]*/ "";
+				var bibleName = /*[[${bible.name}]]*/ "";
+				/*]]>*/
+				var selectBible = document.getElementById("selectBibleName");
+				for (var i = 0; i < bibles.length; i++) {
+					selectBible.options.add(new Option(bibles[i]));
+				}
+				selectBible.value = bibleName;
+			</script>
 		</div>
 		<!--Make sure the form has the autocomplete function switched off:-->
 		<div class="form">
-			<form autocomplete="off" th:action="@{/read}" th:object="${passage}" method="POST" id="form">
+			<form autocomplete="off" th:action="@{/read}" th:object="${passage}" method="POST" id="readForm">
 				<div class="autocomplete">
 					<input id="inputBook" type="text" placeholder="Buch" name="book" th:field="*{book}">
 				</div>
@@ -54,6 +68,7 @@
 				<div class="navigation">
 					<span class="navigation disable" id="spanNext" onclick="goToNextChapter()">>></span>
 				</div>
+				<input type="hidden" th:value="${bibleName}" name="bibleName" id="inputBibleName">
 			</form>
 		</div>
 	</div>

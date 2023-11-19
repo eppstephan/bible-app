@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<title>Bibel Web Applikation</title>
@@ -18,7 +18,7 @@
 		<div class="topnav" id="topnav">
 			<a href="/home">Home</a>
 			<a href="/read">Lesen</a>
-			<a href="/count">Suchen</a>
+			<a href="/search">Suchen</a>
 			<a href="/count">Zählen</a>
 			<!-- <div class="dropdown">
 			<button class="dropbtn">Dropdown
@@ -36,7 +36,21 @@
 		<script type="text/javascript" charset="utf-8" src="topnav.js"></script>
 		<div class="headline">
 			<h2>Die Bibel</h2>
-			<h5>Nach der Übersetzung von Martin Luther 1912</h5>
+			<h5>Nach der Übersetzung von</h5>
+			<form th:action="@{/about}" method="POST" style="display: inline;">
+				<select id="selectBibleName" type="text" th:value="${bibleName}" name="bibleName" onchange="this.form.submit()"></select>
+			</form>
+			<script th:inline="javascript">
+				/*<![CDATA[*/
+				var bibles = /*[[${bibles}]]*/ "";
+				var bibleName = /*[[${bible.name}]]*/ "";
+				/*]]>*/
+				var selectBible = document.getElementById("selectBibleName");
+				for (var i = 0; i < bibles.length; i++) {
+					selectBible.options.add(new Option(bibles[i]));
+				}
+				selectBible.value = bibleName;
+			</script>
 		</div>
 	</div>
 	<br>
