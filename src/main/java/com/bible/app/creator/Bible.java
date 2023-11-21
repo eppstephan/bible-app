@@ -55,6 +55,25 @@ public abstract class Bible {
 		return versesAsListOfLists;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public boolean passageExists(Passage passage) {
+		return (bookMap.get(passage.getBook()) != null
+				&& bookMap.get(passage.getBook()).getChapter().get(passage.getChapter()) != null);
+	}
+
+	public boolean sectionExists(Section section) {
+		return (bookMap.get(section.getBookFrom()) != null && bookMap.get(section.getBookTo()) != null
+				&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom()) != null
+				&& bookMap.get(section.getBookTo()).getChapter().get(section.getChapterTo()) != null
+				&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom()).getVerses()
+						.get(section.getVerseFrom()) != null
+				&& bookMap.get(section.getBookTo()).getChapter().get(section.getChapterTo()).getVerses()
+						.get(section.getVerseTo()) != null);
+	}
+
 	public List<Finding> search(Search search) {
 		List<Finding> findings = new ArrayList<Finding>();
 
@@ -202,17 +221,15 @@ public abstract class Bible {
 			currentPassage.setChapter(getNextChapter(currentPassage).getChapter());
 			currentPassage.setVerse(1);
 		} else if (getNextBook(currentPassage) != null) {
-			currentPassage.setBook(getNextBook(currentPassage));
+			currentPassage.setBook(getNextBook(currentPassage).getName());
 			currentPassage.setChapter(1);
 			currentPassage.setVerse(1);
 		} else {
 		}
 	}
 
-	private String getNextBook(Passage currentPassage) {
-		if (bookMap.get(currentPassage.getBook()).getNextBook() != null)
-			return bookMap.get(currentPassage.getBook()).getNextBook().getName();
-		return null;
+	private Book getNextBook(Passage currentPassage) {
+		return bookMap.get(currentPassage.getBook()).getNextBook();
 	}
 
 	private Chapter getNextChapter(Passage currentPassage) {
@@ -262,9 +279,5 @@ public abstract class Bible {
 
 	private int getBookPosition(String book) {
 		return bookMap.get(book).getPosition();
-	}
-
-	public String getName() {
-		return name;
 	}
 }

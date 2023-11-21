@@ -72,11 +72,13 @@ public class BibleController {
 		model.addAttribute("bibles", bibleService.getBiblesAsList());
 		model.addAttribute("books", bibleService.getBooksAsList());
 		model.addAttribute("chapters", bibleService.getChaptersAsList());
-		model.addAttribute("passage", passage);
-		if (passage.getBook() != null)
+		if (passage.getBook() != null && bibleService.passageExists(passage)) {
+			model.addAttribute("passage", passage);
 			model.addAttribute("verses", bibleService.getVerses(passage));
-		else
+		} else {
+			model.addAttribute("passage", new Passage());
 			model.addAttribute("verses", new ArrayList<Verse>());
+		}
 		return "read";
 	}
 
@@ -96,10 +98,11 @@ public class BibleController {
 		model.addAttribute("bible", bibleService.getActive());
 		model.addAttribute("bibles", bibleService.getBiblesAsList());
 		model.addAttribute("books", bibleService.getBooksAsList());
-		model.addAttribute("search", search);
 		if (search.getSearch() != null && search.getSection() != null) {
+			model.addAttribute("search", search);
 			model.addAttribute("findings", bibleService.search(search));
 		} else {
+			model.addAttribute("search", new Search());
 			model.addAttribute("findings", new ArrayList<Finding>());
 		}
 		return "search";
@@ -125,10 +128,11 @@ public class BibleController {
 		model.addAttribute("books", bibleService.getBooksAsList());
 		model.addAttribute("chapters", bibleService.getChaptersAsList());
 		model.addAttribute("verses", bibleService.getVersesAsListOfLists());
-		model.addAttribute("section", section);
-		if (section.getBookFrom() != null && section.getBookTo() != null) {
+		if (section.getBookFrom() != null && section.getBookTo() != null && bibleService.sectionExists(section)) {
+			model.addAttribute("section", section);
 			model.addAttribute("words", bibleService.countWords(section));
 		} else {
+			model.addAttribute("section", new Section());
 			model.addAttribute("words", new ArrayList<Word>());
 		}
 		return "count";

@@ -77,4 +77,12 @@ public class BibleService {
 	public List<Word> countWords(Section section) {
 		return active.countWords(section);
 	}
+
+	public boolean passageExists(Passage passage) {
+		return active.passageExists(passage);
+	}
+
+	public boolean sectionExists(Section section) {
+		return active.sectionExists(section);
+	}
 }
