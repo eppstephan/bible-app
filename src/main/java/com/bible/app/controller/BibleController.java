@@ -128,7 +128,7 @@ public class BibleController {
 		model.addAttribute("books", bibleService.getBooksAsList());
 		model.addAttribute("chapters", bibleService.getChaptersAsList());
 		model.addAttribute("verses", bibleService.getVersesAsListOfLists());
-		if (section.getBookFrom() != null && section.getBookTo() != null && bibleService.sectionExists(section)) {
+		if (section.getBookFrom() != null && section.getBookTo() != null && bibleService.sectionIsValid(section)) {
 			model.addAttribute("section", section);
 			model.addAttribute("words", bibleService.countWords(section));
 		} else {

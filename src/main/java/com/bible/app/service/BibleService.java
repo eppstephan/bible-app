@@ -82,7 +82,7 @@ public class BibleService {
 		return active.passageExists(passage);
 	}
 
-	public boolean sectionExists(Section section) {
-		return active.sectionExists(section);
+	public boolean sectionIsValid(Section section) {
+		return active.sectionIsValid(section);
 	}
 }

@@ -416,8 +416,7 @@ function checkSubmit() {
 		inputBookTo.value != '' && selectChapterTo.value != 'Kapitel' && selectVerseTo.value != 'Vers'
 		&&
 		(
-			(books.indexOf(inputBookFrom.value) == books.indexOf(inputBookTo.value) && selectChapterFrom.value == selectChapterTo.value && selectVerseFrom.value == selectVerseTo.value)
-			|| (books.indexOf(inputBookFrom.value) == books.indexOf(inputBookTo.value) && selectChapterFrom.value == selectChapterTo.value && selectVerseFrom.value < selectVerseTo.value)
+			(books.indexOf(inputBookFrom.value) == books.indexOf(inputBookTo.value) && selectChapterFrom.value == selectChapterTo.value && selectVerseFrom.value <= selectVerseTo.value)
 			|| (books.indexOf(inputBookFrom.value) == books.indexOf(inputBookTo.value) && selectChapterFrom.value < selectChapterTo.value)
 			|| (books.indexOf(inputBookFrom.value) < books.indexOf(inputBookTo.value))
 		)

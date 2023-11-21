@@ -64,14 +64,32 @@ public abstract class Bible {
 				&& bookMap.get(passage.getBook()).getChapter().get(passage.getChapter()) != null);
 	}
 
-	public boolean sectionExists(Section section) {
-		return (bookMap.get(section.getBookFrom()) != null && bookMap.get(section.getBookTo()) != null
+	public boolean sectionIsValid(Section section) {
+		return ((bookMap.get(section.getBookFrom()) != null && bookMap.get(section.getBookTo()) != null
 				&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom()) != null
 				&& bookMap.get(section.getBookTo()).getChapter().get(section.getChapterTo()) != null
 				&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom()).getVerses()
 						.get(section.getVerseFrom()) != null
 				&& bookMap.get(section.getBookTo()).getChapter().get(section.getChapterTo()).getVerses()
-						.get(section.getVerseTo()) != null);
+						.get(section.getVerseTo()) != null)
+
+				&&
+
+				((bookMap.get(section.getBookFrom()).getPosition() == bookMap.get(section.getBookTo()).getPosition()
+						&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom())
+								.getChapter() == bookMap.get(section.getBookTo()).getChapter()
+										.get(section.getChapterTo()).getChapter()
+						&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom()).getVerses()
+								.get(section.getVerseFrom())
+								.getNumber() <= bookMap.get(section.getBookTo()).getChapter()
+										.get(section.getChapterTo()).getVerses().get(section.getVerseTo()).getNumber())
+						|| (bookMap.get(section.getBookFrom()).getPosition() == bookMap.get(section.getBookTo())
+								.getPosition()
+								&& bookMap.get(section.getBookFrom()).getChapter().get(section.getChapterFrom())
+										.getChapter() < bookMap.get(section.getBookTo()).getChapter()
+												.get(section.getChapterTo()).getChapter())
+						|| (bookMap.get(section.getBookFrom()).getPosition() < bookMap.get(section.getBookTo())
+								.getPosition())));
 	}
 
 	public List<Finding> search(Search search) {
@@ -110,9 +128,7 @@ public abstract class Bible {
 		currentPassage.setBook(section.getBookFrom());
 		currentPassage.setChapter(section.getChapterFrom());
 		currentPassage.setVerse(section.getVerseFrom());
-		// The UI ensures that words are only counted for sections with at least one
-		// verse. Meaning, the "from" passage of the section is before (or equal, i.e.,
-		// words are counted only for one verse) to the "to" passage of the section.
+
 		do {
 			String[] arrWords = getSplittedVerseText(currentPassage);
 			for (String s : arrWords) {
