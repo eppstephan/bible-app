@@ -12,6 +12,10 @@ public class BibleCreator {
 			return new Menge1939(name);
 		else if ("Schlachter 1951".equalsIgnoreCase(name))
 			return new Schlachter1951(name);
+		else if ("World English Bible".equalsIgnoreCase(name))
+			return new WorldEnglishBible("World English");
+		else if ("American Standard Version".equalsIgnoreCase(name))
+			return new AmericanStandardVersion("American Std");
 
 		return null;
 	}

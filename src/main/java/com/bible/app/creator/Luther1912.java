@@ -75,7 +75,7 @@ public class Luther1912 extends Bible {
 
 	public void readIgnore() throws IOException {
 		ignore = new HashSet<String>();
-		try (InputStream inputStream = getClass().getResourceAsStream("/ignore.txt");
+		try (InputStream inputStream = getClass().getResourceAsStream("/ignore-Deu.txt");
 				BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
 			while ((line = br.readLine()) != null) {

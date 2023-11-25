@@ -2,7 +2,7 @@ package com.bible.app.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,17 +27,21 @@ public class BibleService {
 	private Map<String, Bible> bibleMap;
 
 	public BibleService() throws IOException {
-		bibleMap = new HashMap<String, Bible>();
+		bibleMap = new LinkedHashMap<String, Bible>();
 
 		Bible luther1912 = BibleCreator.getBible("Luther 1912");
 		Bible elberfelder1905 = BibleCreator.getBible("Elberfelder 1905");
 		Bible menge1939 = BibleCreator.getBible("Menge 1939");
 		Bible schlachter1951 = BibleCreator.getBible("Schlachter 1951");
+		Bible web = BibleCreator.getBible("World English Bible");
+		Bible asv = BibleCreator.getBible("American Standard Version");
 
 		bibleMap.put(luther1912.getName(), luther1912);
 		bibleMap.put(elberfelder1905.getName(), elberfelder1905);
 		bibleMap.put(menge1939.getName(), menge1939);
 		bibleMap.put(schlachter1951.getName(), schlachter1951);
+		bibleMap.put(web.getName(), web);
+		bibleMap.put(asv.getName(), asv);
 
 		active = luther1912;
 	}

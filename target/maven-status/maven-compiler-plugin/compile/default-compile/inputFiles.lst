@@ -6,9 +6,11 @@ C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Pa
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\Bible.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Finding.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\Elberfelder1905.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\WorldEnglishBible.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\BibleCreator.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Book.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Chapter.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\AmericanStandardVersion.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\service\BibleService.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\BibleApplication.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\Schlachter1951.java
