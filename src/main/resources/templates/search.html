@@ -78,8 +78,7 @@
     	var selectedSearchValue = /*[[${search.section}]]*/ ""
 		/*]]>*/
 	</script>
-	<br>
-	<div class="searchResult">
+	<div class="searchContent">
 		<span th:if="${search.search == null}"
 			th:utext="'Für die Suche ist Groß- und Kleinschreibung nicht relevant. Ist der Suchbegriff ein Teil eines Wortes, gilt dies auch als Treffer.'"></span>
 		<span th:if="${search.search != null}" th:utext="'Die Suche nach <b>' + ${search.search} + '</b>'"></span>

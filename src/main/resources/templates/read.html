@@ -20,16 +20,18 @@
 			<a href="/read" class="active">Lesen</a>
 			<a href="/search">Suchen</a>
 			<a href="/count">Zählen</a>
-			<!-- <div class="dropdown">
-			<button class="dropbtn">Dropdown
-				<i class="fa fa-caret-down"></i>
-			</button>
-			<div class="dropdown-content">
-				<a href="#">Link 1</a>
-				<a href="#">Link 2</a>
-				<a href="#">Link 3</a>
-			</div>
-		</div> -->
+			<!--
+				<div class="dropdown">
+					<button class="dropbtn">Dropdown
+						<i class="fa fa-caret-down"></i>
+					</button>
+					<div class="dropdown-content">
+						<a href="#">Link 1</a>
+						<a href="#">Link 2</a>
+						<a href="#">Link 3</a>
+					</div>
+				</div>
+				-->
 			<a href="/about">Über</a>
 			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="handleTopNav()">&#9776;</a>
 		</div>
@@ -38,7 +40,8 @@
 			<h2>Die Bibel lesen</h2>
 			<h5>Nach der Übersetzung von</h5>
 			<form th:action="@{/read}" method="POST" style="display: inline;" id="bibleNameForm">
-				<select id="selectBibleName" type="text" th:value="${bibleName}" name="bibleName" onchange="setBibleName()"></select>
+				<select id="selectBibleName" type="text" th:value="${bibleName}" name="bibleName"
+					onchange="setBibleName()"></select>
 			</form>
 			<script th:inline="javascript">
 				/*<![CDATA[*/
@@ -76,14 +79,13 @@
 	<script type="text/javascript" charset="utf-8" src="read.js"></script>
 	<script th:inline="javascript">
 		/*<![CDATA[*/
-    	var books = /*[[${books}]]*/ "";
+		var books = /*[[${books}]]*/ "";
 		var chapters = /*[[${chapters}]]*/ "";
 		var selectedChapterValue = /*[[${passage.chapter}]]*/ "";
 		/*]]>*/
 		autocomplete(document.getElementById("inputBook"), books);
 	</script>
-	<br>
-	<div class="read">
+	<div class="readContent">
 		<span th:if="${verses.size() == 0}"
 			th:utext="'Zum Lesen eines Kapitels kann erst das Buch und dann das Kapitel gewählt werden.'"></span>
 		<table>

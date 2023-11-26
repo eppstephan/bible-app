@@ -104,8 +104,7 @@
 		autocomplete(document.getElementById("inputBookFrom"), books);
 		autocomplete(document.getElementById("inputBookTo"), books);
 	</script>
-	<br>
-	<div class="countResult">
+	<div class="countContent">
 		<span th:if="${section.bookFrom == null}"
 			th:text="'Gezählt werden die Wörter in einem bestimmten Abschnitt. Der Abschnitt wird bestimmt von der ersten Stelle mit Buch, Kapitel und Vers bis zur zweiten Stelle mit Buch, Kapitel und Vers.'"></span>
 		<span th:if="${section.bookFrom != null}"

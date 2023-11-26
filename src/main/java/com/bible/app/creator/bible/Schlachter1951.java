@@ -37,7 +37,7 @@ public class Schlachter1951 extends Bible {
 	@Override
 	public void readBible() throws IOException {
 		bookMap = new LinkedHashMap<String, Book>();
-		try (InputStream inputStream = getClass().getResourceAsStream("/bible/Menge1939.txt");
+		try (InputStream inputStream = getClass().getResourceAsStream("/bible/Schlachter1951.txt");
 				BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
 			String line;
 			Book oldBook = null, newBook = null;
