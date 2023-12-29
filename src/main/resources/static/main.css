@@ -8,17 +8,49 @@ body {
 	font: 16px Arial;
 }
 
-#overlay {
-  position: fixed;
-  display: none;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,0.6);
-  z-index: 1;
+div#overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.6);
+	z-index: 2;
+}
+
+div#concordanceWrapper {
+	display: none;
+	color: #888;
+	position: fixed;
+	background-color: #fff;
+	top: 200;
+	left: 50%;
+	width: 500px;
+	transform: translate(-50%, 0%);
+	border: 1px solid #ddd;
+}
+
+div#concordanceContent {
+	display: none;
+	padding: 10px 10px 25px 10px;
+	background-color: #fff;
+	cursor: pointer;
+	z-index: 1;
+	overflow-y: scroll;
+	height: 100%;
+}
+
+div#concordanceFooter {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	padding: 4px 10px;
+	background-color: #fff;
+	cursor: pointer;
+	z-index: 1;
 }
 
 a {
@@ -43,6 +75,16 @@ h5 {
 	font-size: 14px;
 }
 
+h5#strong {
+	color: #fff;
+	font-weight: normal;
+	font-size: 14px;
+	display: block;
+	margin: 0px;
+	padding-top: 12px;
+	padding-bottom: 10px;
+}
+
 div.header {
 	position: fixed;
 	left: 0px;
@@ -60,9 +102,9 @@ div.headline {
 
 #selectBibleName {
 	border: 1px solid transparent;
-	background-color:#042647;
+	background-color: #042647;
 	color: white;
-	margin-left:-5px;
+	margin-left: -5px;
 	padding: 10px 0px;
 	font-size: 14px;
 	width: 130px;
@@ -165,6 +207,10 @@ div.search {
 	div.submit {
 		padding-top: 10px;
 		padding-left: 263px;
+	}
+
+	div#concordanceWrapper {
+		width: 350px;
 	}
 }
 

@@ -11,9 +11,12 @@ C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\BibleCreator.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Book.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\text\Chapter.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\bible\Luther1912Strong.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\service\BibleService.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\BibleApplication.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Word.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\concordance\Description.java
+C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\concordance\Item.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\controller\BibleController.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\creator\bible\Luther1912.java
 C:\Users\Stephan\eclipse-workspace\BibleApp\src\main\java\com\bible\app\model\Section.java

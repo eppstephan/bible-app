@@ -11,7 +11,17 @@ function init() {
 	// Initialize the navigation
 	initNavigation();
 	// Set the bible name
-	document.getElementById('inputBibleName').value = bibleName;
+	inputBibleName = document.getElementById('inputBibleName');
+	if (inputBibleName != null) {
+		inputBibleName.value = bibleName;
+	}
+	// Go to a specific verse, if possible
+	var inputVerse = document.getElementById('inputVerse');
+	if (inputVerse != null && inputVerse.value > 0){		
+		var rectFirstElement = document.getElementById('1').getBoundingClientRect();
+		var rectScrollTo = document.getElementById(inputVerse.value).getBoundingClientRect();
+		window.scrollBy(0, (rectScrollTo.top - rectFirstElement.top));
+	}
 }
 
 function setBibleName() {
@@ -44,7 +54,7 @@ function initNavigation() {
 function goToPrevChapter() {
 	var inputBook = document.getElementById('inputBook');
 	var selectChapter = document.getElementById('selectChapter');
-	if (inputBook.value != '' && parseInt(selectChapter.value) > 1){
+	if (inputBook.value != '' && parseInt(selectChapter.value) > 1) {
 		selectChapter.value = (parseInt(selectChapter.value) - 1).toString();
 		document.getElementById('readForm').submit();
 	}
@@ -55,7 +65,7 @@ function goToNextChapter() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (inputBook.value != '' && parseInt(selectChapter.value) < parseInt(chapters[books.indexOf(inputBook.value)])) {
 		selectChapter.value = (parseInt(selectChapter.value) + 1).toString();
-		document.getElementById('readForm').submit();		
+		document.getElementById('readForm').submit();
 	}
 }
 
@@ -69,7 +79,6 @@ function populateChapters(bookValue) {
 	for (var c = 1; c <= chapterCount; c++) {
 		selectChapter.options.add(new Option(c));
 	}
-	initNavigation();
 }
 
 function autocomplete(input, possibleValues) {
@@ -112,6 +121,7 @@ function autocomplete(input, possibleValues) {
 					/*insert the value for the autocomplete text field:*/
 					input.value = this.getElementsByTagName("input")[0].value;
 					populateChapters(input.value);
+					initNavigation();
 					/*close the list of autocompleted values,
 					(or any other open lists of autocompleted values:*/
 					closeAllLists();
@@ -181,6 +191,83 @@ function autocomplete(input, possibleValues) {
 function doSubmit() {
 	var selectChapter = document.getElementById('selectChapter');
 	if (selectChapter.value != 'Kapitel') {
+		var inputVerse = document.getElementById('inputVerse');
+		if (inputVerse !=  null) {
+			inputVerse.value = "0";
+		}
 		document.getElementById('readForm').submit();
 	}
+}
+
+function showConcordanceEntry(id, a) {
+	var divConcordanceWrapper = document.getElementById("concordanceWrapper");
+	divConcordanceWrapper.style.height = (0.8 * (screen.height - 200)) + 'px';
+	divConcordanceWrapper.style.display = "block";
+	
+	const ids = id.split(' ');
+	var item = concordance[ids[0]];
+	var divConcordanceContent = document.getElementById("concordanceContent");
+	
+	var html = "";
+	html += "<b><span style=\"color:dodgerblue;\">" + a.innerHTML + "</span> " + item.title + " <span style=\"font-weight: normal;\">" + item.id + "</span></b><br><br>";
+	html += item.paragraph + "<br><br>";
+	html += "<table>";
+	html += "<tr><th style=\"text-align: center;\">#</th><th style=\"text-align: left;\">Übersetzt</th><th style=\"text-align: left;\">Parallelstellen</th></tr>";
+	for (var i = 0; i < item.description.length; i++) {
+		html += "<tr>";
+		const descrTitles = item.description[i].title.split(', ');
+		html += "<td style=\"vertical-align: top; text-align: center;\">" + descrTitles[1] + "</td>";
+		html += "<td style=\"vertical-align: top;\">" + descrTitles[0] + "</td>";
+		html += "<td>";
+		for(var j = 0; j < item.description[i].reflinks.length; j++) {
+			html += "<a href=\"#\" onclick=\"goToPassage('" + item.description[i].reflinks[j] + "')\">" + getPassage(item.description[i].reflinks[j]) + "</a>";
+			if (j < item.description[i].reflinks.length - 1) {
+				html += "; ";
+			}
+		}
+		html += "</td>";
+		html += "</tr>";
+	}
+	html += "</table>";
+	divConcordanceContent.innerHTML = html;
+	divConcordanceContent.style.display = "block";
+	divConcordanceContent.scrollTop = 0;
+	
+	var divConcordanceFooter = document.getElementById("concordanceFooter");
+	var html = "";
+	html += "<span style=\"color:#bbb; font-size: 14px;\">Klicke zum Schließen</span>";
+	divConcordanceFooter.innerHTML = html;
+	divConcordanceFooter.style.display = "block";
+}
+
+function getPassage(reflink) {
+	var strPassage="";
+	const words = reflink.split(';');
+	strPassage += books[words[0] - 1] + " " + words[1] + ", " + words[2];
+	return strPassage;
+}
+
+function hideConcordanceEntry() {
+	document.getElementById("concordanceWrapper").style.display = "none";
+	document.getElementById("concordanceContent").style.display = "none";
+	document.getElementById("concordanceFooter").style.display = "none";
+}
+
+function goToPassage(reflink) {
+	const words = reflink.split(';');
+	var book = books[words[0] - 1];
+	var chapter = words[1];
+	var verse = words[2];
+	
+	var inputBook = document.getElementById('inputBook');
+	var selectChapter = document.getElementById('selectChapter');
+	var inputVerse = document.getElementById('inputVerse');
+	
+	inputBook.value = book;
+	// Populate chapters before setting the chapter to a valid value
+	populateChapters(inputBook.value);
+	selectChapter.value = chapter;
+	inputVerse.value = verse;
+	
+	document.getElementById('readForm').submit();
 }

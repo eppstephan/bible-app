@@ -1,6 +1,7 @@
 package com.bible.app.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bible.app.concordance.Item;
 import com.bible.app.model.Finding;
 import com.bible.app.model.Passage;
 import com.bible.app.model.Search;
@@ -136,5 +138,31 @@ public class BibleController {
 			model.addAttribute("words", new ArrayList<Word>());
 		}
 		return "count";
+	}
+
+	@GetMapping("/strong")
+	public String strong(Model model) {
+		model.addAttribute("books", bibleService.getBooksAsListFromLuther1912Strong());
+		model.addAttribute("chapters", bibleService.getChaptersAsListFromLuther1912Strong());
+		model.addAttribute("passage", new Passage());
+		model.addAttribute("verses", new ArrayList<Verse>());
+		model.addAttribute("concordance", new LinkedHashMap<String, Item>());
+		return "strong";
+	}
+
+	@PostMapping("/strong")
+	public String strong(@ModelAttribute("passage") Passage passage, @RequestParam String bibleName, Model model) {
+		model.addAttribute("books", bibleService.getBooksAsListFromLuther1912Strong());
+		model.addAttribute("chapters", bibleService.getChaptersAsListFromLuther1912Strong());
+		if (passage.getBook() != null && bibleService.passageExists(passage)) {
+			model.addAttribute("passage", passage);
+			model.addAttribute("verses", bibleService.getVersesFromLuther1912Strong(passage));
+			model.addAttribute("concordance", bibleService.getConcordance());
+		} else {
+			model.addAttribute("passage", new Passage());
+			model.addAttribute("verses", new ArrayList<Verse>());
+			model.addAttribute("concordance", new LinkedHashMap<String, Item>());
+		}
+		return "strong";
 	}
 }
