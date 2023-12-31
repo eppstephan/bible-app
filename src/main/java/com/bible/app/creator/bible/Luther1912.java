@@ -47,7 +47,7 @@ public class Luther1912 extends Bible {
 
 			XMLStreamReader reader = inputFactory.createXMLStreamReader(stream);
 
-			Book book = null;
+			Book oldBook = null, newBook = null;
 			Chapter chapter = null;
 			Verse verse = null;
 			while (reader.hasNext()) {
@@ -56,15 +56,19 @@ public class Luther1912 extends Bible {
 					if (reader.getName().toString().equals("BIBLEBOOK")) {
 						String bookName = reader.getAttributeValue(0);
 						if (!bookMap.containsKey(bookName)) {
-							book = new Book(bookName, Integer.parseInt(reader.getAttributeValue(1)) - 1);
-							bookMap.put(bookName, book);
+							newBook = new Book(bookName, Integer.parseInt(reader.getAttributeValue(1)) - 1);
+							bookMap.put(bookName, newBook);
+							if (oldBook != null) {
+								oldBook.setNextBook(newBook);
+							}
+							oldBook = newBook;
 						}
 					}
 					if (reader.getName().toString().equals("CHAPTER")) {
 						int chapterNum = Integer.parseInt(reader.getAttributeValue(0));
-						if (!book.getChapter().containsKey(chapterNum)) {
+						if (!newBook.getChapter().containsKey(chapterNum)) {
 							chapter = new Chapter(chapterNum);
-							book.getChapter().put(chapterNum, chapter);
+							newBook.getChapter().put(chapterNum, chapter);
 						}
 					}
 					if (reader.getName().toString().equals("VERS")) {

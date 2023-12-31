@@ -42,5 +42,4 @@ public class Book {
 	public void setNextBook(Book nextBook) {
 		this.nextBook = nextBook;
 	}
-
 }
