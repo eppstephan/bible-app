@@ -209,7 +209,7 @@ function showConcordanceEntry(id, a) {
 	var divConcordanceContent = document.getElementById("concordanceContent");
 
 	var html = "";
-	html += "<b><span style=\"color:dodgerblue;\">" + a.innerHTML + "</span> " + item.title + " <span style=\"font-weight: normal;\">" + item.id + "</span></b><br><br>";
+	html += "<b><span style=\"color:dodgerblue;\">" + a.innerHTML + "</span> " + item.title + " </b><span>" + item.id + "</span><br><br>";
 	html += item.paragraph + "<br><br>";
 	html += "<table>";
 	html += "<tr><th style=\"text-align: center;\">#</th><th style=\"text-align: left;\">Übersetzt</th><th style=\"text-align: left;\">Parallelstellen</th></tr>";
@@ -233,11 +233,25 @@ function showConcordanceEntry(id, a) {
 	divConcordanceContent.style.display = "block";
 	divConcordanceContent.scrollTop = 0;
 
-	var divConcordanceFooter = document.getElementById("concordanceFooter");
+	var divConcordanceClose = document.getElementById("concordanceClose");
 	var html = "";
-	html += "<span style=\"color:#bbb; font-size: 14px;\">Klicke zum Schließen</span>";
-	divConcordanceFooter.innerHTML = html;
-	divConcordanceFooter.style.display = "block";
+	html += "<span>&#10005;</span>";
+	divConcordanceClose.innerHTML = html;
+	divConcordanceClose.style.display = "block";
+	divConcordanceClose.style.marginRight = getScrollBarWidth() + "px";
+
+	var overlay = document.getElementById("overlay");
+	overlay.style.zIndex = "1";
+	overlay.style.display = "block";
+}
+
+function getScrollBarWidth() {
+	let el = document.createElement("div");
+	el.style.cssText = "overflow:scroll; visibility:hidden; position:absolute;";
+	document.body.appendChild(el);
+	let width = el.offsetWidth - el.clientWidth;
+	el.remove();
+	return width;
 }
 
 function getPassage(reflink) {
@@ -250,7 +264,11 @@ function getPassage(reflink) {
 function hideConcordanceEntry() {
 	document.getElementById("concordanceWrapper").style.display = "none";
 	document.getElementById("concordanceContent").style.display = "none";
-	document.getElementById("concordanceFooter").style.display = "none";
+	document.getElementById("concordanceClose").style.display = "none";
+
+	var overlay = document.getElementById("overlay");
+	overlay.style.zIndex = "3";
+	overlay.style.display = "none";
 }
 
 function goToPassage(reflink) {

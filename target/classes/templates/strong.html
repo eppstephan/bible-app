@@ -13,7 +13,7 @@
 </head>
 
 <body onload="init()">
-	<div id="overlay"></div>
+	<div id="overlay" onclick="hideOverlay()"></div>
 	<div class="header">
 		<div class="topnav" id="topnav">
 			<a href="/home">Home</a>
@@ -75,8 +75,8 @@
 		autocomplete(document.getElementById("inputBook"), books);
 	</script>
 	<div id="concordanceWrapper">
-		<div id="concordanceContent" onclick="hideConcordanceEntry()"></div>
-		<div id="concordanceFooter" onclick="hideConcordanceEntry()"></div>
+		<div id="concordanceClose" onclick="hideConcordanceEntry()"></div>
+		<div id="concordanceContent"></div>
 	</div>
 	<div class="readContent">
 		<span th:if="${verses.size() == 0}"

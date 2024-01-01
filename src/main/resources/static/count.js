@@ -132,7 +132,7 @@ function fillCountTable() {
 		t += tr;
 		for (var i = 0; i < currentCountSize; i++) {
 			var tr = "<tr><td class=\"count\">" + countWords[i].count + "</td>";
-			tr += "<td>" + countWords[i].name + "<a href=\"javascript:void(0)\" onclick=\"removeWord('" + countWords[i].index + "');\"style=\"color: red; font-weight:bold;\">&nbsp&#8722&nbsp</a></td></tr>";
+			tr += "<td>" + countWords[i].name + "<a href=\"javascript:void(0)\" onclick=\"removeWord('" + countWords[i].index + "');\"style=\"color: #c82c1c; font-weight:bold;\">&nbsp&#8722&nbsp</a></td></tr>";
 			t += tr;
 		}
 		var tr = "<tr><td colspan=\"2\" style=\"color:#aaa;\">" + currentCountSize + " von " + countWords.length + "</td></tr>";

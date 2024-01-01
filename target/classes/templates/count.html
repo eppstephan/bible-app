@@ -111,7 +111,7 @@
 		<span th:if="${section.bookFrom != null}"
 			th:text="'Es wurden ' + ${words.size()} + ' unterschiedliche Wörter von ' + ${section.bookFrom} + ' ' + ${section.chapterFrom} + ', ' + ${section.verseFrom} + ' bis ' + ${section.bookTo} + ' ' +${section.chapterTo} + ', ' + ${section.verseTo} + ' gezählt.'"></span>
 		<span th:if="${section.bookFrom != null}"
-			th:utext="'Die Tabellen zeigen jeweils die Anzahl (#) für jedes Wort, wie oft es wirklich gezählt oder ignoriert wurde. Mit <span style=&quot;color: red; font-weight: bold;&quot;>&#8722</span> oder <span style=&quot;color: green; font-weight: bold;&quot;>+</span> kann ein Wort ignoriert oder gezählt werden.'"></span>
+			th:utext="'Die Tabellen zeigen jeweils die Anzahl (#) für jedes Wort, wie oft es wirklich gezählt oder ignoriert wurde. Mit <span style=&quot;color: #c82c1c; font-weight: bold;&quot;>&#8722</span> oder <span style=&quot;color: green; font-weight: bold;&quot;>+</span> kann ein Wort ignoriert oder gezählt werden.'"></span>
 		<br><br>
 		<div style="float:left; width:170px;">
 			<table id="wordsTable"></table>
