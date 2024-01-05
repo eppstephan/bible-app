@@ -51,6 +51,10 @@ div#concordanceClose {
 	cursor: pointer;
 	font-size: 24px;
 	font-weight: bold;
+	color: #ddd;
+}
+
+div#concordanceClose:hover {
 	color: #c82c1c;
 }
 
